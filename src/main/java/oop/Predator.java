@@ -1,9 +1,9 @@
 package oop;
 
-public class Predator {
+public class Predator extends Animal{
 
     public Predator() {
         super();
-        System.out.println("oop.Predator");
+        System.out.println("Predator");
     }
 }
