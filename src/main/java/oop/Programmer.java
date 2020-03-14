@@ -1,9 +1,9 @@
 package oop;
 
 public class Programmer extends Engineer {
-    String language;
+    /**String language;
 
     public Code code(Program program) {}
 
-    public void fixPrinter() {}
+    public void fixPrinter() {}*/
 }

@@ -1,7 +1,7 @@
 package oop;
 
 public class Builder extends Engineer {
-    String specialization;
+    /**String specialization;
 
     public Calculation calculate(Project project) {}
 
@@ -9,5 +9,5 @@ public class Builder extends Engineer {
 
     public Building build(Drawing drawing, Material material) {}
 
-    public void drink() {}
+    public void drink() {}*/
 }

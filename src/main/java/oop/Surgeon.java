@@ -1,9 +1,9 @@
 package oop;
 
 public class Surgeon extends Doctor {
-    String specialty;
+   /** String specialty;
 
     public void operate(Patient patient) {}
 
-    public Analysis analize(Patient patient) {}
+    public Analysis analize(Patient patient) {}*/
 }
