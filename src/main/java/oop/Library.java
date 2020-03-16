@@ -2,15 +2,7 @@ package oop;
 
 public class Library {
     public static void main(String[] args) {
-        Book book1 = new Book("Bible", 1376);
-        Book book2 = new Book("War and Piece", 956);
-        Book book3 = new Book("Head First Java", 722);
-        Book book4 = new Book("Clean Code", 464);
-        Book[] books = new Book[4];
-        books[0] = book1;
-        books[1] = book2;
-        books[2] = book3;
-        books[3] = book4;
+        Book[] books = new Book[] {new Book("Bible", 1376), new Book("War and Piece", 956), new Book("Head First Java", 722), new Book("Clean Code", 464)};
         for (int index = 0; index < books.length; index++) {
             Book bk = books[index];
             System.out.println(bk.getName() + " - " + bk.getPages());
