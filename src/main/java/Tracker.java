@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -40,7 +41,8 @@ public class Tracker {
      * @return список всех заявок
      */
     public Item[] findAll() {
-        return items;
+        Item[] allFound = Arrays.copyOf(this.items, position);
+        return allFound;
     }
 
     /**
@@ -49,7 +51,15 @@ public class Tracker {
      * @return список заявок с одинаковым именем?
      */
     public Item[] findByName(String key) {
-        return items;
+        Item[] allFound = new Item[position];
+        int size = 0;
+        for (int i = 0; i < position; i++) {
+            if (key.equals(this.items[i].getName())) {
+                allFound[size++] = items[i];
+            }
+        }
+        allFound = Arrays.copyOf(allFound, size);
+        return allFound;
     }
 
     /**
@@ -58,6 +68,12 @@ public class Tracker {
      * @return искомая заявка
      */
     public Item findById(String id) {
-        return null;
+        Item found = null;
+        for (int i = 0; i < position; i++) {
+            if (this.items[i].getId().equals(id)) {
+                found = this.items[i];
+                break;
+            }
+        } return found;
     }
 }
