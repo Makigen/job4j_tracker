@@ -22,7 +22,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(generateId());
-        this.items[position++] = item;
+        items[position++] = item;
         return item;
     }
 
@@ -41,7 +41,7 @@ public class Tracker {
      * @return список всех заявок
      */
     public Item[] findAll() {
-        Item[] allFound = Arrays.copyOf(this.items, position);
+        Item[] allFound = Arrays.copyOf(items, position);
         return allFound;
     }
 
@@ -54,7 +54,7 @@ public class Tracker {
         Item[] allFound = new Item[position];
         int size = 0;
         for (int i = 0; i < position; i++) {
-            if (key.equals(this.items[i].getName())) {
+            if (key.equals(items[i].getName())) {
                 allFound[size++] = items[i];
             }
         }
@@ -68,12 +68,35 @@ public class Tracker {
      * @return искомая заявка
      */
     public Item findById(String id) {
-        Item found = null;
+        int index = indexOf(id);
+        return index != -1 ? items[index] : null;
+    }
+
+    /**
+     *  Метод возвращает index по id.
+     * @param id
+     * @return index элемента с искомым id
+     */
+    private int indexOf(String id) {
+        int rsl = -1;
         for (int i = 0; i < position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                found = this.items[i];
+            if (items[i].getId().equals(id)) {
+                rsl = i;
                 break;
             }
-        } return found;
+        }
+        return rsl;
+    }
+
+    /**
+     * Метод замены заявки с сохранением прежнего id
+     * @param id
+     * @param item
+     * @return
+     */
+    public Item[] replace(String id, Item item) {
+        items[indexOf(id)] = item;
+        item.setId(id);
+        return items;
     }
 }
