@@ -99,4 +99,17 @@ public class Tracker {
         item.setId(id);
         return items;
     }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public boolean delete(String id) {
+        int index = indexOf(id);
+        System.arraycopy(items, index + 1, items, index, position - index);
+        items[position - 1] = null;
+        position--;
+        return true;
+    }
 }
