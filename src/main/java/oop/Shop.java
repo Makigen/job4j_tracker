@@ -2,21 +2,10 @@ package oop;
 
 public class Shop {
     public Product[] delete(Product[] products, int index) {
-        if (products[index] != null) {
-            products[index] = null;
+        for (int i = index; i < products.length-1; i++) {
+            products[i] = products[i + 1];
         }
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                int j = i;
-                while (j++ < products.length - 1) {
-                    if (products[j] != null) {
-                        products[i] = products[j];
-                        products[j] = null;
-                        break;
-                    }
-                }
-            }
-        }
+        products[products.length - 1] = null;
         return products;
     }
 
