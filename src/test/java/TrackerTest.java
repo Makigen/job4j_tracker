@@ -51,6 +51,17 @@ public class TrackerTest {
     }
 
     @Test
+    public void whenReplaceMinus() {
+        Tracker tracker = new Tracker();
+        Item bug = new Item("Bug");
+        tracker.add(bug);
+        String id = "";
+        Item bugWithDesc = new Item("Bug with description");
+        tracker.replace(id, bugWithDesc);
+        assertThat(tracker.findAll(), is(new Item[]{bug}));
+    }
+
+    @Test
     public void whenDelete() {
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");

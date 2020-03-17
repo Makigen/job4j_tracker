@@ -95,7 +95,10 @@ public class Tracker {
      * @return
      */
     public Item[] replace(String id, Item item) {
-        items[indexOf(id)] = item;
+        int index = indexOf(id);
+        if (index != -1) {
+            items[index] = item;
+        }
         item.setId(id);
         return items;
     }
@@ -107,9 +110,11 @@ public class Tracker {
      */
     public boolean delete(String id) {
         int index = indexOf(id);
+        if (index != -1) {
         System.arraycopy(items, index + 1, items, index, position - index);
         items[position - 1] = null;
         position--;
+        }
         return true;
     }
 }
