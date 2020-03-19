@@ -94,13 +94,15 @@ public class Tracker {
      * @param item
      * @return
      */
-    public Item[] replace(String id, Item item) {
+    public boolean replace(String id, Item item) {
+        boolean rsl = false;
         int index = indexOf(id);
         if (index != -1) {
             items[index] = item;
+            item.setId(id);
+            rsl = true;
         }
-        item.setId(id);
-        return items;
+        return rsl;
     }
 
     /**
@@ -109,12 +111,14 @@ public class Tracker {
      * @return
      */
     public boolean delete(String id) {
+        boolean rsl = false;
         int index = indexOf(id);
         if (index != -1) {
         System.arraycopy(items, index + 1, items, index, position - index);
         items[position - 1] = null;
         position--;
+        rsl = true;
         }
-        return true;
+        return rsl;
     }
 }
