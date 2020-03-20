@@ -114,10 +114,10 @@ public class Tracker {
         boolean rsl = false;
         int index = indexOf(id);
         if (index != -1) {
-        System.arraycopy(items, index + 1, items, index, position - index);
-        items[position - 1] = null;
-        position--;
-        rsl = true;
+            System.arraycopy(items, index + 1, items, index, position - index);
+            items[position - 1] = null;
+            position--;
+            rsl = true;
         }
         return rsl;
     }
