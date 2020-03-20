@@ -1,4 +1,4 @@
-package oop;
+package poly;
 
 public class Bus implements Transport {
     @Override
