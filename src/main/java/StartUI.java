@@ -15,8 +15,9 @@ public class StartUI {
                 tracker.add(item);
             } else if (select == 1) {
                 System.out.println("=== Show all items ====");
-                for (int i = 0; i < tracker.findAll().length && tracker.findAll().length > 0; i++) {
-                    System.out.println(i + ". Name: " + tracker.findAll()[i].getName() + " id: " + tracker.findAll()[i].getId());
+                Item[] allfound = tracker.findAll();
+                for (int i = 0; i < allfound.length && allfound.length > 0; i++) {
+                    System.out.println(i + ". Name: " + allfound[i].getName() + " id: " + allfound[i].getId());
                 }
             }
             else if (select == 2) {
@@ -48,7 +49,11 @@ public class StartUI {
                 System.out.println("=== Find item by Id ====");
                 System.out.print("Enter id: ");
                 String id = scanner.nextLine();
-                System.out.println(tracker.findById(id).getName());
+                if (tracker.findById(id) != null) {
+                    System.out.println(tracker.findById(id).getName());
+                } else {
+                    System.out.println("=== Error ====");
+                }
             }
             else if (select == 5) {
                 System.out.println("=== Find item by name ====");
