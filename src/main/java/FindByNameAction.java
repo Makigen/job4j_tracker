@@ -8,7 +8,7 @@ public class FindByNameAction implements UserAction {
     public boolean execute(Input input, Tracker tracker) {
         String name = input.askStr("Enter name: ");
         Item [] allFound = tracker.findByName(name);
-        if (allFound != null) {
+        if (allFound.length > 0) {
             for (int i = 0; i < allFound.length; i++) {
                 System.out.println("Name: " + allFound[i].getName() + " id: " + allFound[i].getId());
             }
