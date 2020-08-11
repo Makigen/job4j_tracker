@@ -1,4 +1,10 @@
 public class ReplaceAction implements UserAction {
+    private final Output out;
+
+    public ReplaceAction(Output out) {
+        this.out = out;
+    }
+
     @Override
     public String name() {
         return "=== Edit item ====";
@@ -7,13 +13,14 @@ public class ReplaceAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         String id = input.askStr("Enter id: ");
-        String name = input.askStr("Enter new name: ");
-        Item newItem = new Item(name);
-        boolean rsl = tracker.replace(id, newItem);
-        if (rsl) {
-            System.out.println("=== Replace successful ====");
+        Item found = tracker.findById(id);
+        if (found != null) {
+            String name = input.askStr("Enter new name: ");
+            Item newItem = new Item(name);
+            tracker.replace(id, newItem);
+            out.println("=== Replace successful ====");
         } else {
-            System.out.println("=== Error ====");
+            out.println("=== Error ====");
         }
         return true;
     }

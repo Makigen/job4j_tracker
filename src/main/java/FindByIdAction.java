@@ -1,4 +1,10 @@
 public class FindByIdAction implements UserAction {
+    private final Output out;
+
+    public FindByIdAction(Output out) {
+        this.out = out;
+    }
+
     @Override
     public String name() {
         return "=== Find item by Id ====";
@@ -9,9 +15,9 @@ public class FindByIdAction implements UserAction {
         String id = input.askStr("Enter id: ");
         Item found = tracker.findById(id);
         if (found != null) {
-            System.out.println(found.getName());
+            out.println(found.getName());
         } else {
-            System.out.println("=== Error ====");
+            out.println("=== Error ====");
         }
         return true;
     }
