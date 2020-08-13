@@ -77,18 +77,41 @@ public class StartUITest {
     @Test
     public void whenFindAll() {
         Output out = new StubOutput();
-        Output empty = new EmptyOutput();
         Input in = new StubInput(
-                new String[] {"0", "1"}
+                new String[] {"1", "6"}
         );
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Showed item"));
         UserAction[] actions = {
+                new CreateAction(out),
                 new ShowAllAction(out),
-                new ExitAction(empty)
+                new ReplaceAction(out),
+                new DeleteAction(out),
+                new FindByIdAction(out),
+                new FindByNameAction(out),
+                new ExitAction(out),
         };
-        new StartUI(empty).init(in, tracker, actions);
-        assertThat(out.toString(), is("0. Name: "+ item.getName() + " id: " + item.getId() + System.lineSeparator()));
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() +
+                "0. === Create a new Item ====" + System.lineSeparator() +
+                "1. === Show all items ====" + System.lineSeparator() +
+                "2. === Edit item ====" + System.lineSeparator() +
+                "3. === Delete item ====" + System.lineSeparator() +
+                "4. === Find item by Id ====" + System.lineSeparator() +
+                "5. === Find item by name ====" + System.lineSeparator() +
+                 "6. === Exit Program ====" + System.lineSeparator() +
+                 "0. Name: Showed item id: " + item.getId() + System.lineSeparator() +
+                 "Menu." + System.lineSeparator() +
+                 "0. === Create a new Item ====" + System.lineSeparator() +
+                 "1. === Show all items ====" + System.lineSeparator() +
+                 "2. === Edit item ====" + System.lineSeparator() +
+                 "3. === Delete item ====" + System.lineSeparator() +
+                 "4. === Find item by Id ====" + System.lineSeparator() +
+                 "5. === Find item by name ====" + System.lineSeparator() +
+                 "6. === Exit Program ====" + System.lineSeparator() +
+                 "Exit Program" + System.lineSeparator()
+                ));
     }
 
     @Test
@@ -98,16 +121,39 @@ public class StartUITest {
         Item item = tracker.add(new Item("Found by name item"));
         /* Входные данные должны содержать Name добавленной заявки */
         Output out = new StubOutput();
-        Output empty = new EmptyOutput();
         Input in = new StubInput(
-                new String[] {"0", item.getName(), "1"}
+                new String[] {"5", item.getName(), "6"}
         );
         UserAction[] actions = {
+                new CreateAction(out),
+                new ShowAllAction(out),
+                new ReplaceAction(out),
+                new DeleteAction(out),
+                new FindByIdAction(out),
                 new FindByNameAction(out),
-                new ExitAction(empty)
+                new ExitAction(out),
         };
-        new StartUI(empty).init(in, tracker, actions);
-        assertThat(out.toString(), is("Name: "+ item.getName() + " id: " + item.getId() + System.lineSeparator()));
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. === Create a new Item ====" + System.lineSeparator() +
+                        "1. === Show all items ====" + System.lineSeparator() +
+                        "2. === Edit item ====" + System.lineSeparator() +
+                        "3. === Delete item ====" + System.lineSeparator() +
+                        "4. === Find item by Id ====" + System.lineSeparator() +
+                        "5. === Find item by name ====" + System.lineSeparator() +
+                        "6. === Exit Program ====" + System.lineSeparator() +
+                        "Name: Found by name item id: " + item.getId() + System.lineSeparator() +
+                        "Menu." + System.lineSeparator() +
+                        "0. === Create a new Item ====" + System.lineSeparator() +
+                        "1. === Show all items ====" + System.lineSeparator() +
+                        "2. === Edit item ====" + System.lineSeparator() +
+                        "3. === Delete item ====" + System.lineSeparator() +
+                        "4. === Find item by Id ====" + System.lineSeparator() +
+                        "5. === Find item by name ====" + System.lineSeparator() +
+                        "6. === Exit Program ====" + System.lineSeparator() +
+                        "Exit Program" + System.lineSeparator()
+        ));
     }
 
     @Test
@@ -117,15 +163,38 @@ public class StartUITest {
         Item item = tracker.add(new Item("Found by ID item"));
         /* Входные данные должны содержать ID добавленной заявки */
         Output out = new StubOutput();
-        Output empty = new EmptyOutput();
         Input in = new StubInput(
-                new String[] {"0", item.getId(), "1"}
+                new String[] {"4", item.getId(), "6"}
         );
         UserAction[] actions = {
+                new CreateAction(out),
+                new ShowAllAction(out),
+                new ReplaceAction(out),
+                new DeleteAction(out),
                 new FindByIdAction(out),
-                new ExitAction(empty)
+                new FindByNameAction(out),
+                new ExitAction(out),
         };
-        new StartUI(empty).init(in, tracker, actions);
-        assertThat(out.toString(), is(item.getName() + System.lineSeparator()));
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. === Create a new Item ====" + System.lineSeparator() +
+                        "1. === Show all items ====" + System.lineSeparator() +
+                        "2. === Edit item ====" + System.lineSeparator() +
+                        "3. === Delete item ====" + System.lineSeparator() +
+                        "4. === Find item by Id ====" + System.lineSeparator() +
+                        "5. === Find item by name ====" + System.lineSeparator() +
+                        "6. === Exit Program ====" + System.lineSeparator() +
+                        "Found by ID item" + System.lineSeparator() +
+                        "Menu." + System.lineSeparator() +
+                        "0. === Create a new Item ====" + System.lineSeparator() +
+                        "1. === Show all items ====" + System.lineSeparator() +
+                        "2. === Edit item ====" + System.lineSeparator() +
+                        "3. === Delete item ====" + System.lineSeparator() +
+                        "4. === Find item by Id ====" + System.lineSeparator() +
+                        "5. === Find item by name ====" + System.lineSeparator() +
+                        "6. === Exit Program ====" + System.lineSeparator() +
+                        "Exit Program" + System.lineSeparator()
+        ));
     }
 }
