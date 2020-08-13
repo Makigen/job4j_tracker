@@ -13,11 +13,10 @@ public class ReplaceAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         String id = input.askStr("Enter id: ");
-        Item found = tracker.findById(id);
-        if (found != null) {
+        Item item = new Item(id);
+        if (tracker.replace(id, item)) {
             String name = input.askStr("Enter new name: ");
-            Item newItem = new Item(name);
-            tracker.replace(id, newItem);
+            item.setName(name);
             out.println("=== Replace successful ====");
         } else {
             out.println("=== Error ====");
