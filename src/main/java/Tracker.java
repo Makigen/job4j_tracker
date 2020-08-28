@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @version $Id$
@@ -9,26 +8,23 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private final Item[] items = new Item[100];
-
-    /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position = 0;
+    private final List<Item> items = new ArrayList<>();
 
     /**
      * Метод реализующий добавление заявки в хранилище
+     *
      * @param item новая заявка
      */
     public Item add(Item item) {
         item.setId(generateId());
-        items[position++] = item;
+        items.add(item);
         return item;
     }
 
     /**
      * Метод генерирует уникальный ключ для заявки.
      * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
+     *
      * @return Уникальный ключ.
      */
     private String generateId() {
@@ -38,58 +34,62 @@ public class Tracker {
 
     /**
      * Метод получения списка всех заявок
+     *
      * @return список всех заявок
      */
-    public Item[] findAll() {
-        Item[] allFound = Arrays.copyOf(items, position);
-        return allFound;
+    public List<Item> findAll() {
+        return items;
     }
 
     /**
      * Медот получения списка по имени
+     *
      * @param key имя заявки
      * @return список заявок с одинаковым именем?
      */
-    public Item[] findByName(String key) {
-        Item[] allFound = new Item[position];
-        int size = 0;
-        for (int i = 0; i < position; i++) {
-            if (key.equals(items[i].getName())) {
-                allFound[size++] = items[i];
+    public ArrayList<Item> findByName(String key) {
+        ArrayList<Item> allFound = new ArrayList<>();
+        for (Item item : items) {
+            if (key.equals(item.getName())) {
+                allFound.add(item);
             }
         }
-        allFound = Arrays.copyOf(allFound, size);
         return allFound;
     }
 
     /**
      * Метод получения заявки по id
+     *
      * @param id
      * @return искомая заявка
      */
     public Item findById(String id) {
         int index = indexOf(id);
-        return index != -1 ? items[index] : null;
+        return index != -1 ? items.get(index) : null;
     }
 
     /**
-     *  Метод возвращает index по id.
+     * Метод возвращает index по id.
+     *
      * @param id
      * @return index элемента с искомым id
      */
     private int indexOf(String id) {
         int rsl = -1;
-        for (int i = 0; i < position; i++) {
-            if (items[i].getId().equals(id)) {
-                rsl = i;
+        int index = 0;
+        for (Item item : items) {
+            if (item.getId().equals(id)) {
+                rsl = index;
                 break;
             }
+            index++;
         }
         return rsl;
     }
 
     /**
      * Метод замены заявки с сохранением прежнего id
+     *
      * @param id
      * @param item
      * @return
@@ -98,7 +98,7 @@ public class Tracker {
         boolean rsl = false;
         int index = indexOf(id);
         if (index != -1) {
-            items[index] = item;
+            items.set(index, item);
             item.setId(id);
             rsl = true;
         }
@@ -106,7 +106,6 @@ public class Tracker {
     }
 
     /**
-     *
      * @param id
      * @return
      */
@@ -114,9 +113,7 @@ public class Tracker {
         boolean rsl = false;
         int index = indexOf(id);
         if (index != -1) {
-            System.arraycopy(items, index + 1, items, index, position - index);
-            items[position - 1] = null;
-            position--;
+            items.remove(index);
             rsl = true;
         }
         return rsl;

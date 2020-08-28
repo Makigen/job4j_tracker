@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class ShowAllAction implements UserAction {
     private final Output out;
 
@@ -12,9 +14,9 @@ public class ShowAllAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        Item[] allFound = tracker.findAll();
-        for (int i = 0; i < allFound.length; i++) {
-            out.println(i + ". Name: " + allFound[i].getName() + " id: " + allFound[i].getId());
+        List<Item> allFound = tracker.findAll();
+        for (Item item : allFound) {
+            out.println(allFound.indexOf(item) + ". Name: " + item.getName() + " id: " + item.getId());
         }
         return true;
     }
