@@ -28,7 +28,7 @@ public class TrackerTest {
         tracker.add(item2);
         tracker.add(item3);
         List<Item> result = tracker.findAll();
-        assertThat(result, is(new ArrayList<>(Arrays.asList(item1, item2, item3)) ));
+        assertThat(result, is(new ArrayList<>(Arrays.asList(item1, item2, item3))));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class TrackerTest {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
-        List<Item> result = tracker.findByName("test1");
+        Item[] result = tracker.findByName("test1").toArray(new Item[0]);
         assertThat(result, is(new Item[]{item1, item3}));
     }
 
@@ -63,7 +63,7 @@ public class TrackerTest {
         String id = "";
         Item bugWithDesc = new Item("Bug with description");
         tracker.replace(id, bugWithDesc);
-        assertThat(tracker.findAll(), is(new Item[]{bug}));
+        assertThat(tracker.findAll().toArray(), is(new Item[]{bug}));
     }
 
     @Test

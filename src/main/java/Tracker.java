@@ -47,8 +47,8 @@ public class Tracker {
      * @param key имя заявки
      * @return список заявок с одинаковым именем?
      */
-    public ArrayList<Item> findByName(String key) {
-        ArrayList<Item> allFound = new ArrayList<>();
+    public List<Item> findByName(String key) {
+        List<Item> allFound = new ArrayList<>();
         for (Item item : items) {
             if (key.equals(item.getName())) {
                 allFound.add(item);

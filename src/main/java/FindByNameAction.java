@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public class FindByNameAction implements UserAction {
     private final Output out;
@@ -15,7 +15,7 @@ public class FindByNameAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         String name = input.askStr("Enter name: ");
-        ArrayList<Item> allFound = tracker.findByName(name);
+        List<Item> allFound = tracker.findByName(name);
         if (allFound.size() > 0) {
             for (Item item : allFound) {
                 out.println("Name: " + item.getName() + " id: " + item.getId());
