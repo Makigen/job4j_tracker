@@ -1,12 +1,11 @@
 package collection;
 
-import java.sql.Array;
 import java.util.*;
 
 public class Departments {
 
     public static List<String> fillGaps(List<String> deps) {
-        HashSet<String> tmp = new HashSet<>();
+        TreeSet<String> tmp = new TreeSet<>();
         for (String value : deps) {
             String start = "";
             for (String el : value.split("/")) {
@@ -15,9 +14,7 @@ public class Departments {
                 start += "/";
             }
         }
-        List<String> rsl = new ArrayList<>(tmp);
-        Collections.sort(rsl);
-        return rsl;
+        return new ArrayList<>(tmp);
     }
 
     public static void sortAsc(List<String> orgs) {
