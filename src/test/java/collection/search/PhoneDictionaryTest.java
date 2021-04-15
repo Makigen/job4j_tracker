@@ -2,11 +2,10 @@ package collection.search;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class PhoneDictionaryTest {
     @Test
@@ -15,8 +14,8 @@ public class PhoneDictionaryTest {
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
-        ArrayList<Person> persons = phones.find("Petr");
-        assertThat(persons.get(0).getSurname(), is("Arsentev"));
+        List<Person> persons = phones.find("Petr");
+        assertEquals(persons.get(0).getSurname(), "Arsentev");
     }
 
     @Test
@@ -24,7 +23,7 @@ public class PhoneDictionaryTest {
         PhoneDictionary phones = new PhoneDictionary();
         phones.add(new Person("Petr", "Arsentev", "534872", "Bryansk"));
         phones.add(new Person("Kirill", "Malikov", "584353", "Tallinn"));
-        ArrayList<Person> persons = phones.find("53");
-        assertThat(persons.get(1).getName(), is("Kirill"));
+        List<Person> persons = phones.find("53");
+        assertEquals(persons.get(1).getName(), "Kirill");
     }
 }
