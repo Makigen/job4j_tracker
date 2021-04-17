@@ -2,28 +2,25 @@ package collection.search;
 
 import org.junit.Test;
 
-import java.util.List;
-
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class PhoneDictionaryTest {
     @Test
     public void whenFindByName() {
-        PhoneDictionary phones = new PhoneDictionary();
+        var phones = new PhoneDictionary();
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
-        List<Person> persons = phones.find("Petr");
+        var persons = phones.find("Petr");
         assertEquals(persons.get(0).getSurname(), "Arsentev");
     }
 
     @Test
     public void whenFindByNumber() {
-        PhoneDictionary phones = new PhoneDictionary();
+        var phones = new PhoneDictionary();
         phones.add(new Person("Petr", "Arsentev", "534872", "Bryansk"));
         phones.add(new Person("Kirill", "Malikov", "584353", "Tallinn"));
-        List<Person> persons = phones.find("53");
+        var persons = phones.find("53");
         assertEquals(persons.get(1).getName(), "Kirill");
     }
 }
