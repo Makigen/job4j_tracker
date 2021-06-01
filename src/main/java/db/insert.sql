@@ -1,0 +1,1 @@
+insert into items(name) values ('String_1'), ('String_2'), ('String_3'), ('String_4'), ('String_5');
