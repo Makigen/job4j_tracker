@@ -1,10 +1,12 @@
+package ru.job4j.tracker;
+
 import java.util.*;
 
 /**
  * @version $Id$
  * @since 0.1
  */
-public class Tracker {
+public class MemTracker {
     /**
      * Массив для хранение заявок.
      */
@@ -27,9 +29,9 @@ public class Tracker {
      *
      * @return Уникальный ключ.
      */
-    private String generateId() {
+    private int generateId() {
         Random rm = new Random();
-        return String.valueOf(rm.nextLong() + System.currentTimeMillis());
+        return (int)(rm.nextLong() + System.currentTimeMillis());
     }
 
     /**
@@ -63,7 +65,7 @@ public class Tracker {
      * @param id
      * @return искомая заявка
      */
-    public Item findById(String id) {
+    public Item findById(int id) {
         int index = indexOf(id);
         return index != -1 ? items.get(index) : null;
     }
@@ -74,11 +76,11 @@ public class Tracker {
      * @param id
      * @return index элемента с искомым id
      */
-    private int indexOf(String id) {
+    private int indexOf(int id) {
         int rsl = -1;
         int index = 0;
         for (Item item : items) {
-            if (item.getId().equals(id)) {
+            if (item.getId() == id) {
                 rsl = index;
                 break;
             }
@@ -94,7 +96,7 @@ public class Tracker {
      * @param item
      * @return
      */
-    public boolean replace(String id, Item item) {
+    public boolean replace(int id, Item item) {
         boolean rsl = false;
         int index = indexOf(id);
         if (index != -1) {
@@ -109,7 +111,7 @@ public class Tracker {
      * @param id
      * @return
      */
-    public boolean delete(String id) {
+    public boolean delete(int id) {
         boolean rsl = false;
         int index = indexOf(id);
         if (index != -1) {
