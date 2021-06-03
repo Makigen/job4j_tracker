@@ -18,7 +18,7 @@ public class ShowAllAction implements UserAction {
     public boolean execute(Input input, Store tracker) {
         List<Item> allFound = tracker.findAll();
         for (Item item : allFound) {
-            out.println(allFound.indexOf(item) + ". Name: " + item.getName());
+            out.println(allFound.indexOf(item) + ". Name: " + item.getName() + " id: " + item.getId());
         }
         return true;
     }

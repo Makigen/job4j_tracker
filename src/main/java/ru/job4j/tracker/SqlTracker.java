@@ -88,7 +88,9 @@ public class SqlTracker implements Store, AutoCloseable {
         try (PreparedStatement statement = connection.prepareStatement("select * from items")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    items.add(new Item(resultSet.getString("name")));
+                    Item item = new Item(resultSet.getString("name"));
+                    item.setId(resultSet.getInt("id"));
+                    items.add(item);
                 }
             }
         } catch (Exception e) {
@@ -104,7 +106,9 @@ public class SqlTracker implements Store, AutoCloseable {
             statement.setString(1, key);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    items.add(new Item(resultSet.getString("name")));
+                    Item item = new Item(resultSet.getString("name"));
+                    item.setId(resultSet.getInt("id"));
+                    items.add(item);
                 }
             }
         } catch (Exception e) {
@@ -119,8 +123,9 @@ public class SqlTracker implements Store, AutoCloseable {
         try (PreparedStatement statement = connection.prepareStatement("select * from items where id = ?")) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                     item = new Item(resultSet.getString("name"));
+                    item.setId(resultSet.getInt("id"));
                 }
             }
         } catch (Exception e) {
